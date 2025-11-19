@@ -62,7 +62,7 @@ const NavBar = () => {
         </a>
         <a className="btn btn-ghost text-sm">
           <LuPiggyBank />
-          Branch
+          Budget
         </a>
         <a className="btn btn-ghost text-sm">
           <FaRegHeart />
@@ -71,7 +71,7 @@ const NavBar = () => {
       </div>
 
       {/* beginning of profile section */}
-      <div className="flex gap-2  w-full  justify-end">
+      <div className="flex gap-2  w-full lg:w-auto  justify-end">
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
