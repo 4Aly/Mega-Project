@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FaLightbulb } from "react-icons/fa";
 import { FaList } from "react-icons/fa6";
@@ -44,10 +45,10 @@ const NavBar = () => {
         </div>
       </div>
       <div className="flex-1 hidden lg:flex">
-        <a className="btn btn-ghost text-sm">
+        <Link to="/" className="btn btn-ghost text-sm">
           <FaHome />
           Home
-        </a>
+        </Link>
         <a className="btn btn-ghost text-sm">
           <FaLightbulb />
           Quiz
@@ -90,13 +91,13 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link to="/profile" className="justify-between">
                 Profile
-                <span className="badge">New</span>
-              </a>
+                
+              </Link>
             </li>
             <li>
-              <a>Settings</a>
+              <Link to="/settings">Settings</Link>
             </li>
             <li>
               <a>Logout</a>
