@@ -6,23 +6,21 @@ import TrendingAttractions from "../components/TrendingAttractions/TrendingAttra
 import HiddenGems from "../components/HiddenGems/HiddenGems";
 import Footer from "../components/Footer/Footer";
 
-const Home = () => {
+type Props = {
+  attractions: any[];
+};
+
+const Home = ({ attractions = [] }: Props) => {
   return (
-    <>
+    <div>
       <NavBar />
       <HomeBanner />
       <QuickAccess />
       <FindYourVibe />
-      {/* <Card
-        photo="https://www.visit-gem.com/storage/informations/1752589691_1737030068_DSC00437-min.jpeg"
-        rating={4}
-        title="Grand Egyptian Museum"
-        description="Great experience, highly recommended"
-      /> */}
-      <TrendingAttractions />
-      <HiddenGems />
+      <TrendingAttractions attractions={attractions} />
+      <HiddenGems attractions={attractions} />
       <Footer></Footer>
-    </>
+    </div>
   );
 };
 

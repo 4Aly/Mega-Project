@@ -1,10 +1,18 @@
-export const Card = ({
-  photo = "",
-  title = "",
-  description = "",
-  rating = 0,
-  className = "",
-}) => {
+type Props = {
+  photo: string;
+  title: string;
+  description: string;
+  rating: number;
+  className: string;
+};
+
+export const SimpleCard = ({
+  photo,
+  title,
+  description,
+  rating,
+  className,
+}: Props) => {
   const roundedRating = Math.max(0, Math.min(5, Math.round(rating ?? 0)));
   const formatedRating = (Math.round(rating * 10) / 10).toFixed(1);
   const stars = Array.from({ length: 5 }, (_, i) =>
@@ -52,4 +60,4 @@ export const Card = ({
   );
 };
 
-export default Card;
+export default SimpleCard;

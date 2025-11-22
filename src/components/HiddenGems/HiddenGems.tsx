@@ -1,16 +1,18 @@
 import React from "react";
-import CardContainer from "../Reusable Components/CardContainer";
+import CardCarousel from "../Reusable Components/CardCarousel";
 
-type Props = {};
+type Props = {
+  attractions: Array<object>;
+};
 
-const HiddenGems = (props: Props) => {
+const HiddenGems = ({ attractions = [] }: Props) => {
   return (
     <div className="items-center justify-center px-16">
       <h1 className="text-xl w-full text-left font-bold">
         Hidden Gems & Local Favorites
       </h1>
 
-      <CardContainer className="mt-6 mb-10" />
+      <CardCarousel items={attractions} className="mt-6 mb-10" />
     </div>
   );
 };

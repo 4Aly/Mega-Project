@@ -53,10 +53,10 @@ const NavBar = () => {
           <FaLightbulb />
           Quiz
         </a>
-        <a className="btn btn-ghost text-sm">
+        <Link to="/recommendations" className="btn btn-ghost text-sm">
           <FaList />
           Recommendations
-        </a>
+        </Link>
         <a className="btn btn-ghost text-sm">
           <FaCalendarAlt />
           Trip Planner
@@ -93,7 +93,6 @@ const NavBar = () => {
             <li>
               <Link to="/profile" className="justify-between">
                 Profile
-                
               </Link>
             </li>
             <li>

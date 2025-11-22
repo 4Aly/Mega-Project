@@ -1,10 +1,14 @@
 import React, { useRef } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import SimpleCard from "./SimpleCard.tsx";
 
-import Card from "./Card";
+type Props = {
+  items: Array<any>;
+  className: string;
+};
 
-const CardContainer = ({ items = [], className = "" }: any) => {
+const CardCarousel = ({ items, className }: Props) => {
   const scrollerRef = useRef(null);
 
   const scrollByWidth = (direction: any) => {
@@ -29,27 +33,30 @@ const CardContainer = ({ items = [], className = "" }: any) => {
 
       <div
         ref={scrollerRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-0 py-4"
+        className="flex gap-4 overflow-x-auto scroll-smooth lg:px-20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-0 py-4"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {items.length === 0
           ? // ay klam l7ad ma yeb2a fi database
             Array.from({ length: 100 }).map((_, i) => (
               <div key={i} className="flex-shrink-0" style={{ width: 280 }}>
-                <Card
+                <SimpleCard
+                  photo=""
                   title={`Sample ${i + 1}`}
                   description="Sample description"
                   rating={Math.floor(Math.random() * 5) + 1}
+                  className=""
                 />
               </div>
             ))
           : items.map((it: any, idx: number) => (
               <div key={idx} className="flex-shrink-0" style={{ width: 280 }}>
-                <Card
+                <SimpleCard
                   photo={it.photo}
                   title={it.title}
                   description={it.description}
                   rating={it.rating}
+                  className=""
                 />
               </div>
             ))}
@@ -66,4 +73,4 @@ const CardContainer = ({ items = [], className = "" }: any) => {
   );
 };
 
-export default CardContainer;
+export default CardCarousel;
