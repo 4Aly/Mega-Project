@@ -89,10 +89,10 @@ const QuizResults = () => {
           {/* Call to Action Button */}
           <div className="flex flex-col items-center gap-4">
             <Link
-              to="/recommendations"
+              to="/TripPlanner" //TODO FIX ROUTING WHEN PAGE IS CREATED
               className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
             >
-              View My Recommendations
+              View Your Personal Trip
               <span className="text-xl">→</span>
             </Link>
 
