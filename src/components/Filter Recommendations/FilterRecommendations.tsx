@@ -1,4 +1,3 @@
-import React from "react";
 import { CiFilter } from "react-icons/ci";
 
 type Props = {};
