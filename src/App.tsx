@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
 import Settings from "./pages/Settings";
 import Recommendations from "./pages/Recommendations";
+import Quiz from "./pages/Quiz";
+import QuizResults from "./pages/QuizResults";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const attractions = [
@@ -82,6 +85,9 @@ function App() {
           path="/recommendations"
           element={<Recommendations attractions={attractions} />}
         />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/quiz/results" element={<QuizResults />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

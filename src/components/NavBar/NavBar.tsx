@@ -49,10 +49,10 @@ const NavBar = () => {
           <FaHome />
           Home
         </Link>
-        <a className="btn btn-ghost text-sm">
+        <Link to="/quiz" className="btn btn-ghost text-sm">
           <FaLightbulb />
           Quiz
-        </a>
+        </Link>
         <Link to="/recommendations" className="btn btn-ghost text-sm">
           <FaList />
           Recommendations
