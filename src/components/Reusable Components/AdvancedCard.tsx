@@ -35,7 +35,7 @@ const AdvancedCard = ({
   ).join("");
   return (
     <div
-      className={`w-72 rounded overflow-hidden shadow-md bg-white flex flex-col h-full ${
+      className={`w-96 h-[580px] rounded overflow-hidden shadow-md bg-white flex flex-col ${
         className ?? ""
       }`}
     >
