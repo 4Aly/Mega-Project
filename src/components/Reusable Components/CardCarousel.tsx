@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import SimpleCard from "./SimpleCard.tsx";
 
 type Props = {
-  items: Array<any>;
+  items: any[];
   className: string;
 };
 
@@ -36,30 +36,28 @@ const CardCarousel = ({ items, className }: Props) => {
         className="flex gap-4 overflow-x-auto scroll-smooth lg:px-20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-0 py-4"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
-        {items.length === 0
-          ? // ay klam l7ad ma yeb2a fi database
-            Array.from({ length: 100 }).map((_, i) => (
-              <div key={i} className="flex-shrink-0" style={{ width: 280 }}>
-                <SimpleCard
-                  photo=""
-                  title={`Sample ${i + 1}`}
-                  description="Sample description"
-                  rating={Math.floor(Math.random() * 5) + 1}
-                  className=""
-                />
-              </div>
-            ))
-          : items.map((it: any, idx: number) => (
-              <div key={idx} className="flex-shrink-0" style={{ width: 280 }}>
-                <SimpleCard
-                  photo={it.photo}
-                  title={it.title}
-                  description={it.description}
-                  rating={it.rating}
-                  className=""
-                />
-              </div>
-            ))}
+        {items && items.length > 0 ? (
+          items.map((attraction: any, idx: number) => (
+            <div key={idx} className="flex-shrink-0">
+              <SimpleCard
+                photo={attraction.photo || ""}
+                title={attraction.title || ""}
+                description={attraction.description || ""}
+                rating={attraction.rating || 0}
+                className=""
+                level={attraction.level || ""}
+                distance={attraction.distance || ""}
+                isFavorite={attraction.isFavorite || false}
+                category={attraction.category || ""}
+                id={attraction.id !== undefined ? attraction.id : idx}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="text-gray-500 text-center py-8">
+            No attractions available
+          </div>
+        )}
       </div>
 
       <button

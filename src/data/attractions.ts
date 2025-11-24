@@ -1,6 +1,8 @@
 export const attractions = [
   {
-    photo: "src/media/Sphinx testing image.jpg",
+    id: 1,
+    photo:
+      "https://images.globalhighlights.com/allpicture/2021/06/bdd9119e11ef437389da5b13_cut_600x550_241_1747667654.jpg",
     title: "Pyramids of Giza",
     description:
       "The iconic ancient pyramids located on the Giza Plateau, built over 4,500 years ago.",
@@ -12,6 +14,7 @@ export const attractions = [
     category: "Historical",
   },
   {
+    id: 2,
     photo:
       "https://www.cleopatraegypttours.com/wp-content/uploads/2018/08/Karnak-Temple-Facts.jpg",
     title: "Karnak Temple",
@@ -25,6 +28,7 @@ export const attractions = [
     category: "Historical",
   },
   {
+    id: 3,
     photo:
       "https://holiday-golightly.com/wp-content/uploads/2017/10/20070602-dsc_0089-lightroom-1024x685.jpg",
     title: "Abu Simbel",
@@ -38,6 +42,7 @@ export const attractions = [
     category: "Historical",
   },
   {
+    id: 4,
     photo:
       "https://herasianadventures.com/wp-content/uploads/2025/06/best-things-to-do-in-Siwa-Oasis-egypt-4.jpg",
     title: "Siwa Oasis",
@@ -51,6 +56,7 @@ export const attractions = [
     category: "Natural",
   },
   {
+    id: 5,
     photo:
       "https://static.dezeen.com/uploads/2025/10/grand-egyptian-museum-heneghan-peng-architects-cultural-egypt-giza-architecture_dezeen_2364_hero.jpg",
     title: "Grand Egyptian Museum",
@@ -64,4 +70,3 @@ export const attractions = [
     category: "Museum",
   },
 ];
-

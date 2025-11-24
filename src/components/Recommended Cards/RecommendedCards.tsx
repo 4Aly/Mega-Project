@@ -3,9 +3,10 @@ import AdvancedCard from "./../Reusable Components/AdvancedCard";
 
 type Props = {
   attractions: any[];
+  showCloseButton?: boolean;
 };
 
-const RecommendedCards = ({ attractions }: Props) => {
+const RecommendedCards = ({ attractions, showCloseButton = false }: Props) => {
   return (
     <div className="w-full">
       <div className="flex flex-wrap gap-5 justify-center ">
@@ -20,6 +21,8 @@ const RecommendedCards = ({ attractions }: Props) => {
             distance={attraction.distance}
             isFavorite={attraction.isFavorite}
             category={attraction.category}
+            id={attraction.id}
+            showCloseButton={showCloseButton}
             key={idx}
           />
         ))}

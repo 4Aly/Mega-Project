@@ -1,12 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FaLightbulb } from "react-icons/fa";
 import { FaList } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
-import { LuPiggyBank } from "react-icons/lu";
+import { FaMap } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 
 const NavBar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return currentPath === "/";
+    }
+    return currentPath.startsWith(path);
+  };
   return (
     <div className="px-20 navbar bg-base-100 shadow-sm">
       <div className="navbar-start lg:hidden">
@@ -33,37 +42,122 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow "
           >
             <li>
-              <a>Homepage</a>
+              <Link
+                to="/"
+                className={
+                  isActive("/") ? "text-gray-500 pointer-events-none" : ""
+                }
+              >
+                Home
+              </Link>
             </li>
             <li>
-              <a>Portfolio</a>
+              <Link
+                to="/quiz"
+                className={
+                  isActive("/quiz") ? "text-gray-800 pointer-events-none" : ""
+                }
+              >
+                Quiz
+              </Link>
             </li>
             <li>
-              <a>About</a>
+              <Link
+                to="/browse"
+                className={
+                  isActive("/browse") ? "text-gray-400 pointer-events-none" : ""
+                }
+              >
+                Browse
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/recommendations"
+                className={
+                  isActive("/recommendations")
+                    ? "text-gray-400 pointer-events-none"
+                    : ""
+                }
+              >
+                Recommendations
+              </Link>
+            </li>
+            <li>
+              <a>Trip Planner</a>
+            </li>
+            <li>
+              <a>Favourites</a>
+            </li>
+            <li>
+              <Link
+                to="/profile"
+                className={
+                  isActive("/profile")
+                    ? "text-gray-400 pointer-events-none"
+                    : ""
+                }
+              >
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/settings"
+                className={
+                  isActive("/settings")
+                    ? "text-gray-400 pointer-events-none"
+                    : ""
+                }
+              >
+                Settings
+              </Link>
             </li>
           </ul>
         </div>
       </div>
       <div className="flex-1 hidden lg:flex">
-        <Link to="/" className="btn btn-ghost text-sm">
+        <Link
+          to="/"
+          className={`btn btn-ghost text-sm ${
+            isActive("/") ? "bg-gray-200 pointer-events-none" : ""
+          }`}
+        >
           <FaHome />
           Home
         </Link>
-        <Link to="/quiz" className="btn btn-ghost text-sm">
+        <Link
+          to="/quiz"
+          className={`btn btn-ghost text-sm ${
+            isActive("/quiz") ? "bg-gray-200 pointer-events-none" : ""
+          }`}
+        >
           <FaLightbulb />
           Quiz
         </Link>
-        <Link to="/recommendations" className="btn btn-ghost text-sm">
+        <Link
+          to="/browse"
+          className={`btn btn-ghost text-sm ${
+            isActive("/browse") ? "bg-gray-200 pointer-events-none" : ""
+          }`}
+        >
+          <FaMap />
+          Browse
+        </Link>
+        <Link
+          to="/recommendations"
+          className={`btn btn-ghost text-sm ${
+            isActive("/recommendations")
+              ? "bg-gray-200 pointer-events-none"
+              : ""
+          }`}
+        >
           <FaList />
           Recommendations
         </Link>
         <a className="btn btn-ghost text-sm">
           <FaCalendarAlt />
           Trip Planner
-        </a>
-        <a className="btn btn-ghost text-sm">
-          <LuPiggyBank />
-          Budget
         </a>
         <a className="btn btn-ghost text-sm">
           <FaRegHeart />

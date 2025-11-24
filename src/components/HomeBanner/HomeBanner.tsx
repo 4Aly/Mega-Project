@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const HomeBanner = () => {
   const imageUrl = new URL("../../media/sphinxinverted.jpg", import.meta.url)
     .href;
@@ -17,9 +19,12 @@ const HomeBanner = () => {
             Your personalized guide to ancient wonders and vibrant culture
             awaits.
           </h3>
-          <button className="btn bg-orange-400 border-none text-white ">
+          <Link
+            to="/quiz"
+            className="btn bg-orange-400 border-none text-white "
+          >
             Start Your Travel Quiz
-          </button>
+          </Link>
         </div>
       </div>
     </div>

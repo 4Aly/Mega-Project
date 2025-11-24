@@ -4,6 +4,7 @@ import { TbMapRoute } from "react-icons/tb";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegWindowClose } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 type Props = {
   photo: string;
@@ -15,6 +16,8 @@ type Props = {
   distance: string;
   isFavorite: boolean;
   category: string;
+  id?: number;
+  showCloseButton?: boolean;
 };
 
 const AdvancedCard = ({
@@ -27,6 +30,8 @@ const AdvancedCard = ({
   distance,
   isFavorite,
   category,
+  id,
+  showCloseButton = false,
 }: Props) => {
   const roundedRating = Math.max(0, Math.min(5, Math.round(rating ?? 0)));
   const formatedRating = (Math.round(rating * 10) / 10).toFixed(1);
@@ -89,7 +94,9 @@ const AdvancedCard = ({
 
       <div className="flex px-6 pb-4 flex-shrink-0">
         <div className="flex items-center justify-start gap-4 flex-1">
-          <FaRegWindowClose className="text-gray-600 text-2xl align-middle justify-center items-center cursor-pointer" />
+          {showCloseButton && (
+            <FaRegWindowClose className="text-gray-600 text-2xl align-middle justify-center items-center cursor-pointer" />
+          )}
           <label className="swap swap-flip text-2xl">
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" defaultChecked={isFavorite} />
@@ -103,9 +110,18 @@ const AdvancedCard = ({
           </label>
         </div>
 
-        <a className="btn bg-orange-400 align-middle justify-center text-white">
-          View Details
-        </a>
+        {id !== undefined ? (
+          <Link
+            to={`/attraction/${id}`}
+            className="btn bg-orange-400 align-middle justify-center text-white"
+          >
+            View Details
+          </Link>
+        ) : (
+          <a className="btn bg-orange-400 align-middle justify-center text-white">
+            View Details
+          </a>
+        )}
       </div>
     </div>
   );

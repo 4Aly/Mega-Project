@@ -1,6 +1,17 @@
 import { CiSearch } from "react-icons/ci";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FindYourVibe = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      navigate(`/browse?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center px-16 flex-col mb-20">
       <h1 className="text-xl w-full text-left font-bold">Find Your Vibe</h1>
@@ -13,6 +24,9 @@ const FindYourVibe = () => {
           type="search"
           aria-label="Search attractions"
           placeholder="Search attractions by mood (e.g., historical, serene, adventurous)"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyPress={handleKeyPress}
           className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 bg-white shadow-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-200"
         />
       </div>

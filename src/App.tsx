@@ -6,6 +6,8 @@ import Recommendations from "./pages/Recommendations";
 import Quiz from "./pages/Quiz";
 import QuizResults from "./pages/QuizResults";
 import PageNotFound from "./pages/PageNotFound";
+import Browse from "./pages/Browse";
+import AttractionDetails from "./pages/AttractionDetails";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/recommendations" element={<Recommendations />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/quiz/results" element={<QuizResults />} />
+        <Route path="/browse" element={<Browse />} />
+        <Route path="/attraction/:id" element={<AttractionDetails />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>

@@ -39,7 +39,7 @@ const Recommendations = () => {
           <FilterRecommendations />
         </div>
         <div className="w-full lg:flex-1 min-w-0">
-          <RecommendedCards attractions={attractions} />
+          <RecommendedCards attractions={attractions} showCloseButton={true} />
         </div>
       </div>
       <Footer />

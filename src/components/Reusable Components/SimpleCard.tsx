@@ -1,9 +1,16 @@
+import { Link } from "react-router-dom";
+
 type Props = {
   photo: string;
   title: string;
   description: string;
   rating: number;
   className: string;
+  level: string;
+  distance: string;
+  isFavorite: boolean;
+  category: string;
+  id?: number;
 };
 
 export const SimpleCard = ({
@@ -12,6 +19,11 @@ export const SimpleCard = ({
   description,
   rating,
   className,
+  level,
+  distance,
+  isFavorite,
+  category,
+  id,
 }: Props) => {
   const roundedRating = Math.max(0, Math.min(5, Math.round(rating ?? 0)));
   const formatedRating = (Math.round(rating * 10) / 10).toFixed(1);
@@ -52,9 +64,12 @@ export const SimpleCard = ({
       </div>
 
       <div className="px-6 pb-4 flex-shrink-0">
-        <a className="btn bg-white align-middle justify-center w-full">
+        <Link
+          to={`/attraction/${id}`}
+          className="btn bg-white align-middle justify-center w-full"
+        >
           View Details
-        </a>
+        </Link>
       </div>
     </div>
   );
