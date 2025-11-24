@@ -19,10 +19,6 @@ export const SimpleCard = ({
   description,
   rating,
   className,
-  level,
-  distance,
-  isFavorite,
-  category,
   id,
 }: Props) => {
   const roundedRating = Math.max(0, Math.min(5, Math.round(rating ?? 0)));

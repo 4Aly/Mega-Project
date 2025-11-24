@@ -1,9 +1,7 @@
 import { CiFilter } from "react-icons/ci";
 import { useState } from "react";
 
-type Props = {};
-
-const FilterRecommendations = (props: Props) => {
+const FilterRecommendations = () => {
   const [budget, setBudget] = useState(50000);
   const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
 

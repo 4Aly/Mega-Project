@@ -1,4 +1,3 @@
-import React from "react";
 import { LuPiggyBank } from "react-icons/lu";
 import { TbMapRoute } from "react-icons/tb";
 import { FaHeart } from "react-icons/fa";
@@ -34,7 +33,6 @@ const AdvancedCard = ({
   showCloseButton = false,
 }: Props) => {
   const roundedRating = Math.max(0, Math.min(5, Math.round(rating ?? 0)));
-  const formatedRating = (Math.round(rating * 10) / 10).toFixed(1);
   const stars = Array.from({ length: 5 }, (_, i) =>
     i < roundedRating ? "★" : "☆"
   ).join("");

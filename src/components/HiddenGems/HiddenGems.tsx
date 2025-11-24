@@ -1,4 +1,3 @@
-import React from "react";
 import CardCarousel from "../Reusable Components/CardCarousel";
 
 type Props = {

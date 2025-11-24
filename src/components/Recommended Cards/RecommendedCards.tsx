@@ -1,4 +1,3 @@
-import React from "react";
 import AdvancedCard from "./../Reusable Components/AdvancedCard";
 
 type Props = {

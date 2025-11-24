@@ -1,6 +1,4 @@
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <footer className="footer footer-center bg-base-200 p-6 text-gray-600 text-l">
       <aside>

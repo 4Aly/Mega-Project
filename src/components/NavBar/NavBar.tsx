@@ -13,8 +13,9 @@ const NavBar = () => {
   const isActive = (path: string) => {
     if (path === "/") {
       return currentPath === "/";
+    } else {
+      return currentPath.startsWith(path);
     }
-    return currentPath.startsWith(path);
   };
   return (
     <div className="px-20 navbar bg-base-100 shadow-sm">
