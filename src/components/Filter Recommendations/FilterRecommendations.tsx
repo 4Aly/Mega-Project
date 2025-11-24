@@ -1,11 +1,30 @@
 import { CiFilter } from "react-icons/ci";
+import { useState } from "react";
 
 type Props = {};
 
 const FilterRecommendations = (props: Props) => {
+  const [budget, setBudget] = useState(50000);
+  const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
+
+  const moods = [
+    "Adventurous",
+    "Relaxing",
+    "Cultural",
+    "Romantic",
+    "Family-Friendly",
+    "Historical",
+  ];
+
+  const toggleMood = (mood: string) => {
+    setSelectedMoods((prev) =>
+      prev.includes(mood) ? prev.filter((m) => m !== mood) : [...prev, mood]
+    );
+  };
+
   return (
-    <div className="flex align-middle justify-center">
-      <div className="border p-5 rounded-xl items-center">
+    <div className="flex align-middle justify-center w-full">
+      <div className="border p-5 rounded-xl items-center w-full max-w-full">
         <div className="flex text-2xl gap-3 align-middle items-center mb-3">
           <CiFilter className="text-orange-500 font-extrabold text-3xl" />
           <h2>Filter Recommendations</h2>
@@ -15,24 +34,19 @@ const FilterRecommendations = (props: Props) => {
             <div>
               <h2 className="text-xl font-bold mb-3">Mood</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                <div className="btn rounded-full text-md w-full justify-start">
-                  Adventurous
-                </div>
-                <div className="btn rounded-full text-md w-full justify-start">
-                  Relaxing
-                </div>
-                <div className="btn rounded-full text-md w-full justify-start">
-                  Cultural
-                </div>
-                <div className="btn rounded-full text-md w-full justify-start">
-                  Romantic
-                </div>
-                <div className="btn rounded-full text-md w-full justify-start">
-                  Family-Friendly
-                </div>
-                <div className="btn rounded-full text-md w-full justify-start">
-                  Historical
-                </div>
+                {moods.map((mood) => (
+                  <button
+                    key={mood}
+                    onClick={() => toggleMood(mood)}
+                    className={`btn rounded-full text-md w-full justify-start ${
+                      selectedMoods.includes(mood)
+                        ? "bg-orange-400 text-white hover:bg-orange-500"
+                        : ""
+                    }`}
+                  >
+                    {mood}
+                  </button>
+                ))}
               </div>
             </div>
             <div className="my-5">
@@ -40,11 +54,19 @@ const FilterRecommendations = (props: Props) => {
               <input
                 type="range"
                 min={0}
-                max="100"
+                max={50000}
+                value={budget}
+                onChange={(e) =>
+                  setBudget(Math.round(Number(e.target.value) / 100) * 100)
+                }
+                onClick={() => console.log(budget)}
                 className="range range-xs [--range-shdw:orange]"
               />
               <p className="text-gray-500">
-                Budget Level: <span className="font-bold">40%</span>
+                Budget Level:{" "}
+                <span className="font-bold">
+                  {budget.toLocaleString("en-US")} EGP
+                </span>
               </p>
             </div>
           </div>

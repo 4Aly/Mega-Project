@@ -9,10 +9,10 @@ type Props = {
 
 const Recommendations = ({ attractions = [] }: Props) => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <NavBar />
 
-      <div className="mx-10 lg:mx-20">
+      <div className="mx-4 sm:mx-6 lg:mx-20">
         <h1 className="text-3xl font-bold mt-8 mb-4">
           Personalized Recommendations
         </h1>
@@ -22,8 +22,8 @@ const Recommendations = ({ attractions = [] }: Props) => {
         </p>
       </div>
 
-      <div className="flex justify-end items-end mx-10 lg:mx-20">
-        <div className="flex">
+      <div className="flex justify-end items-end mx-4 sm:mx-6 lg:mx-20">
+        <div className="flex w-full sm:w-auto">
           <select
             className="select select-bordered w-full max-w-xs"
             defaultValue={"1"}
@@ -35,9 +35,13 @@ const Recommendations = ({ attractions = [] }: Props) => {
         </div>
       </div>
 
-      <div className="mx-10 lg:mx-20 my-4 flex flex-col lg:flex-row gap-5 ">
-        <FilterRecommendations />
-        <RecommendedCards attractions={attractions} />
+      <div className="mx-4 sm:mx-6 lg:mx-20 my-4 flex flex-col lg:flex-row gap-5">
+        <div className="w-full lg:w-auto">
+          <FilterRecommendations />
+        </div>
+        <div className="w-full lg:flex-1 min-w-0">
+          <RecommendedCards attractions={attractions} />
+        </div>
       </div>
       <Footer />
     </div>

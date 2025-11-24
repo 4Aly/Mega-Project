@@ -35,7 +35,7 @@ const AdvancedCard = ({
   ).join("");
   return (
     <div
-      className={`max-w-sm rounded overflow-hidden shadow-md bg-white ${
+      className={`w-72 rounded overflow-hidden shadow-md bg-white flex flex-col h-full ${
         className ?? ""
       }`}
     >
@@ -43,15 +43,15 @@ const AdvancedCard = ({
         <img
           src={photo}
           alt={title ?? "Card image"}
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-cover flex-shrink-0"
         />
       ) : (
-        <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+        <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500 flex-shrink-0">
           No image
         </div>
       )}
 
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 flex-grow">
         <div className="flex">
           {title && <div className="font-bold text-xl mb-2">{title}</div>}
           <div className="ml-auto text-sm text-black bg-gray-200 align-middle p-2 justify-center w-fit px-2 rounded-full">
@@ -66,11 +66,11 @@ const AdvancedCard = ({
         </div>
 
         {description && (
-          <p className="text-gray-500 text-base">{description}</p>
+          <p className="text-gray-500 text-base line-clamp-2">{description}</p>
         )}
       </div>
 
-      <div className="flex text-md">
+      <div className="flex text-md flex-shrink-0">
         <div className="flex items-center space-x-2 px-6 pb-4">
           <div className="text-orange-400">
             <LuPiggyBank />
@@ -85,7 +85,7 @@ const AdvancedCard = ({
         </div>
       </div>
 
-      <div className="flex px-6 pb-4">
+      <div className="flex px-6 pb-4 flex-shrink-0">
         <div className="flex items-center justify-start gap-4 flex-1">
           <FaRegWindowClose className="text-gray-600 text-2xl align-middle justify-center items-center cursor-pointer" />
           <label className="swap swap-flip text-2xl">
