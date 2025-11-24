@@ -8,7 +8,7 @@ type Props = {
 const RecommendedCards = ({ attractions }: Props) => {
   return (
     <div className="w-full">
-      <div className="flex flex-wrap gap-5 justify-center">
+      <div className="flex flex-wrap gap-5 justify-center ">
         {attractions?.map((attraction, idx) => (
           <AdvancedCard
             photo={attraction.photo}
