@@ -9,12 +9,16 @@ import PageNotFound from "./pages/PageNotFound";
 import Browse from "./pages/Browse";
 import AttractionDetails from "./pages/AttractionDetails";
 import Favourites from "./pages/Favourites";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/recommendations" element={<Recommendations />} />

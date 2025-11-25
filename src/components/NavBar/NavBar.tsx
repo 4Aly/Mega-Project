@@ -1,14 +1,43 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaLightbulb } from "react-icons/fa";
 import { FaList } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaMap } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import { isAuthenticated, getCurrentUser, logout } from "../../services/authService";
+import type { User } from "../../types/auth";
 
 const NavBar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
+  const [authenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    // Check authentication status
+    const checkAuth = () => {
+      const authStatus = isAuthenticated();
+      const currentUser = getCurrentUser();
+      setAuthenticated(authStatus);
+      setUser(currentUser);
+    };
+
+    checkAuth();
+    // Check auth status periodically (e.g., when storage changes)
+    const interval = setInterval(checkAuth, 1000);
+    return () => clearInterval(interval);
+  }, [location]);
+
+  const handleLogout = async () => {
+    await logout();
+    setAuthenticated(false);
+    setUser(null);
+    navigate("/");
+    window.location.reload();
+  };
 
   const isActive = (path: string) => {
     if (path === "/") {
@@ -85,7 +114,7 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
-              <a>Trip Planner</a>
+              <a className="text-gray-400 cursor-not-allowed">Trip Planner</a>
             </li>
             <li>
               <Link
@@ -99,30 +128,61 @@ const NavBar = () => {
                 Favourites
               </Link>
             </li>
-            <li>
-              <Link
-                to="/profile"
-                className={
-                  isActive("/profile")
-                    ? "text-gray-400 pointer-events-none"
-                    : ""
-                }
-              >
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/settings"
-                className={
-                  isActive("/settings")
-                    ? "text-gray-400 pointer-events-none"
-                    : ""
-                }
-              >
-                Settings
-              </Link>
-            </li>
+            {authenticated ? (
+              <>
+                <li>
+                  <Link
+                    to="/profile"
+                    className={
+                      isActive("/profile")
+                        ? "text-gray-400 pointer-events-none"
+                        : ""
+                    }
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/settings"
+                    className={
+                      isActive("/settings")
+                        ? "text-gray-400 pointer-events-none"
+                        : ""
+                    }
+                  >
+                    Settings
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    to="/login"
+                    className={
+                      isActive("/login")
+                        ? "text-gray-400 pointer-events-none"
+                        : ""
+                    }
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/register"
+                    className={
+                      isActive("/register")
+                        ? "text-gray-400 pointer-events-none"
+                        : ""
+                    }
+                  >
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
@@ -165,7 +225,7 @@ const NavBar = () => {
           <FaList />
           Recommendations
         </Link>
-        <a className="btn btn-ghost text-sm">
+        <a className="btn btn-ghost text-sm text-gray-400 cursor-not-allowed">
           <FaCalendarAlt />
           Trip Planner
         </a>
@@ -181,37 +241,65 @@ const NavBar = () => {
       </div>
 
       {/* beginning of profile section */}
-      <div className="flex gap-2  w-full lg:w-auto  justify-end">
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+      <div className="flex gap-2 w-full lg:w-auto justify-end">
+        {authenticated ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  alt="User avatar"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                />
+              </div>
             </div>
+            <ul
+              tabIndex={-1}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <div className="px-4 py-2 text-sm text-gray-500 border-b">
+                  {user?.fullName || "User"}
+                </div>
+              </li>
+              <li>
+                <Link to="/profile" className="justify-between">
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="/settings">Settings</Link>
+              </li>
+              <li>
+                <a onClick={handleLogout} className="cursor-pointer">
+                  Logout
+                </a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <Link to="/profile" className="justify-between">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+        ) : (
+          <div className="flex gap-2">
+            <Link
+              to="/login"
+              className={`btn btn-ghost text-sm ${
+                isActive("/login") ? "bg-gray-200 pointer-events-none" : ""
+              }`}
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className={`btn bg-orange-400 hover:bg-orange-500 border-none text-white text-sm ${
+                isActive("/register") ? "opacity-75 pointer-events-none" : ""
+              }`}
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
 import { FaCheckCircle, FaMapMarkerAlt } from "react-icons/fa";
@@ -88,13 +88,13 @@ const QuizResults = () => {
 
           {/* Call to Action Button */}
           <div className="flex flex-col items-center gap-4">
-            <Link
-              to="/TripPlanner" //TODO FIX ROUTING WHEN PAGE IS CREATED
-              className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+            <button
+              disabled
+              className="w-full sm:w-auto px-8 py-3 bg-gray-300 text-gray-500 font-semibold rounded-lg shadow-md cursor-not-allowed flex items-center justify-center gap-2 opacity-75"
             >
               View Your Personal Trip
               <span className="text-xl">→</span>
-            </Link>
+            </button>
 
             {/* Retake Quiz Link */}
             <button

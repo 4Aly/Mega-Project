@@ -1,15 +1,32 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaCog, FaBars, FaHome } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
+import { getCurrentUser, logout } from "../services/authService";
+import type { User } from "../types/auth";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userInfo, setUserInfo] = useState({
-    fullName: "Jane Doe",
-    email: "jane.doe@example.com",
-    phoneNumber: "+1 (555) 123-4567",
-    address: "123 Main St, Anytown, USA",
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
   });
+
+  useEffect(() => {
+    const user = getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+      setUserInfo({
+        fullName: user.fullName || "",
+        email: user.email || "",
+        phoneNumber: user.phoneNumber || "",
+        address: user.address || "",
+      });
+    }
+  }, []);
 
   const [preferences, setPreferences] = useState({
     emailNotifications: true,
@@ -34,6 +51,12 @@ const UserProfile = () => {
 
   const handleToggle = (field: keyof typeof preferences) => {
     setPreferences({ ...preferences, [field]: !preferences[field] });
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -103,7 +126,10 @@ const UserProfile = () => {
 
           {/* Logout at bottom */}
           <div className="absolute bottom-8 left-0 w-full px-6">
-            <button className="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900">
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900 cursor-pointer"
+            >
               <MdLogout className="text-base" />
               <span>Logout</span>
             </button>
