@@ -9,10 +9,12 @@ import PageNotFound from "./pages/PageNotFound";
 import Browse from "./pages/Browse";
 import AttractionDetails from "./pages/AttractionDetails";
 import Favourites from "./pages/Favourites";
+import ScrollToTop from "./components/Scroller/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<UserProfile />} />
