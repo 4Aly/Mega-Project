@@ -25,7 +25,7 @@ const RecommendedCards = ({
 }: Props) => {
   return (
     <div className="w-full">
-      <div className="flex flex-wrap gap-5 justify-start">
+      <div className="flex flex-wrap gap-5 justify-center xl:justify-start">
         {attractions?.map((attraction, idx) => (
           <AdvancedCard
             photo={attraction.photo}
